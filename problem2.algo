@@ -1,0 +1,89 @@
+//Procedure for Dot Product
+procedure dot_product(v1: array of real, v2: array of real, n: integer, ps: real by reference)
+    ps := 0
+    FOR i FROM 0 TO n-1  DO
+        ps := ps + v1[i] * v2[i];
+    END_FOR
+EndProcedure
+
+//Algorithm to Check Orthogonality Using the Procedure
+ALGORITHM check_orthogonality
+VAR
+    n (number of vector pairs);
+    v1, v2: array of real;
+    ps: real;
+    m: integer (size of each vector);
+BEGIN
+  
+   FOR k FROM 1 TO n   DO
+    Read m;
+        Declare v1[0..m-1], v2[0..m-1];
+    
+        // Input vectors
+        FOR i FROM 0 TO  m-1   DO
+            Read v1[i];
+        END_FOR
+        
+        FOR i FROM 0 TO m-1  DO
+            Read v2[i];
+        END_FOR
+
+        // Call dot_product procedure
+        Call dot_product(v1, v2, m, ps);
+
+        // Check orthogonality
+        IF (ps = 0) THEN
+            write("Vectors", k, "are orthogonal.") ;
+        ELSE
+            write("Vectors", k, "are not orthogonal.";) 
+        END_IF
+        
+    END_FOR
+END
+
+//Modified Version Using a Dot Product Function
+Function dot_product(v1: array of real, v2: array of real, n: integer):= real
+     ps: real := 0
+     FOR i FROM 0 TO n-1  DO
+        ps := ps + v1[i] * v2[i];
+     END_FOR
+    Return ps;
+EndFunction
+
+//Modified Main Algorithm
+ALGORITHM check_orthogonality_using_function
+VAR
+    n (number of vector pairs);
+    v1, v2: array of real;
+    m: integer;
+BEGIN
+    FOR k FROM 1 TO n  DO
+       Read m;
+        Declare v1[0..m-1], v2[0..m-1];
+
+// Input vectors
+FOR i FROM 0 TO m-1  DO
+    Read v1[i];
+END_FOR
+FOR i FROM 0 TO m-1  DO
+    Read v2[i];
+END_FOR
+
+// Call dot_product function
+ps := dot_product(v1, v2, m);
+
+// Check orthogonality
+IF (ps:= 0 ) THEN
+    write("Vectors", k, "are orthogonal.");
+ELSE
+    write("Vectors", k, "are not orthogonal.");
+END_IF
+
+    END_FOR
+END
+
+    
+        
+
+
+    

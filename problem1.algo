@@ -1,0 +1,47 @@
+ALGORITHM sum_of_distinct_elements
+VAR
+    set_declarations
+    Tab1, Tab2: ARRAY_OF INTEGER[n] // declaring the array  
+    i,j,n1,n2,n: INTEGER; // declaring the index and the table.lenghth  
+    summ:= 0:INTEGER; // declaring the result 
+    is_present: BOOLEAN; //used to show weither the element is found on the other set or not
+BEGIN
+    set_instructions
+    n1:=tab1.lenghth(); // definning the length of the array  
+    n2:=tab2.lenghth(); // definning the length of the array 
+
+    FOR i FROM 0 TO (n1-1)  DO // remember the tab.length is decreased by 1
+       Read(tab[i]);// inserting the elements directly in the array.
+    END_FOR
+    FOR j FROM 0 TO (n2-1)  DO // remember the tab.length is decreased by 1
+       Read(tab[j]);// inserting the elements  in the array.
+    END_FOR
+    
+     FOR i FROM 0 TO (n1-1)  DO
+       is_present:= false;
+       FOR j FROM 0 TO (n2-1)  DO
+        
+         IF (tab[i]:=tab[j]) THEN
+            is_present:=true; // the element is not found in the other set
+         ELSE
+            is_present:= false; // the element is not found in the other set
+            summ:=summ+tab[i]; // adding the element to the summ
+         END_IF
+
+       END_FOR
+     END_FOR
+     FOR i FROM 0 TO (n2-1)  DO // remember the tab.length is decreased by 1
+       is_present:= false; 
+       FOR j FROM 0 TO (n1-1)  DO // remember the tab.length is decreased by 1
+        
+         IF (tab[i]:=tab[j]) THEN
+            is_present:=true; // the element is not found in the other set
+         ELSE
+            is_present:= false;// the element is not found in the other set
+            summ:=summ+tab[i]; // adding the element to the summ
+         END_IF
+
+       END_FOR
+     END_FOR
+     write("the sum of all distinct element",summ); // the result
+END
